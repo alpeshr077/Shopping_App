@@ -6,10 +6,12 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.core.view.get
+import androidx.core.view.size
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 
-class ProductAdapter(private val itmlist:ArrayList<product_model>):RecyclerView.Adapter<ProductAdapter.ProductHolder>() {
+class ProductAdapter( val itmlist: ArrayList<product_model>):RecyclerView.Adapter<ProductAdapter.ProductHolder>() {
 
     class ProductHolder(itemView: View) : ViewHolder(itemView){
 
