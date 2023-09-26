@@ -32,77 +32,12 @@ class Add_Fragment : Fragment() {
 
         binding.btnsendActivity.setOnClickListener {
 
-
+            var intent = Intent(context,AddActivity::class.java)
+            startActivity(intent)
 
         }
 
         return binding.root
-    }
-
-    fun insert_data(view: View) {
-
-
-        var itemName = binding.productName.text.toString()
-        var itemRate = binding.productPrice.text.toString()
-
-        reference = FirebaseDatabase.getInstance().getReference("items")
-
-        if (itemName.isEmpty()) {
-            Toast.makeText(context, "please enter product name", Toast.LENGTH_SHORT).show()
-        } else if (itemRate.isEmpty()) {
-            Toast.makeText(context, "please enter product price", Toast.LENGTH_SHORT).show()
-        } else {
-
-            val item = product_model(itemName, itemRate, sImage)
-            val databaseReference = FirebaseDatabase.getInstance().reference
-            val id = databaseReference.push().key
-            reference.child(id.toString()).setValue(item).addOnSuccessListener {
-
-                binding.productName.text.clear()
-                binding.productPrice.text.clear()
-                Toast.makeText(context, "data inserted", Toast.LENGTH_SHORT).show()
-
-            }.addOnFailureListener {
-
-                Toast.makeText(context, "data not inserted", Toast.LENGTH_SHORT).show()
-
-            }
-
-        }
-
-    }
-
-    fun insert_image(view: View) {
-
-        var myfileintent = Intent(Intent.ACTION_GET_CONTENT)
-        myfileintent.setType("image/*")
-        ActivityResultLauncher.launch(myfileintent)
-
-    }
-
-    private val ActivityResultLauncher = registerForActivityResult<Intent, ActivityResult>(
-        ActivityResultContracts.StartActivityForResult()
-    ) { result: ActivityResult ->
-
-        if (result.resultCode == AppCompatActivity.RESULT_OK) {
-            val uri = result.data!!.data
-            try {
-
-                val inputStreem = context?.contentResolver?.openInputStream(uri!!)
-                val myBitmap = BitmapFactory.decodeStream(inputStreem)
-                val stream = ByteArrayOutputStream()
-                myBitmap.compress(Bitmap.CompressFormat.PNG, 100, stream)
-                val bytes = stream.toByteArray()
-                sImage = android.util.Base64.encodeToString(bytes, android.util.Base64.DEFAULT)
-                binding.imgSelect.setImageBitmap(myBitmap)
-                inputStreem!!.close()
-                Toast.makeText(context, "Image Selected", Toast.LENGTH_SHORT).show()
-
-            } catch (ex: Exception) {
-                Toast.makeText(context, ex.message.toString(), Toast.LENGTH_SHORT).show()
-            }
-        }
-
     }
 
 }

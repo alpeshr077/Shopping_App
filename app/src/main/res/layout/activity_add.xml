@@ -42,8 +42,18 @@
                     android:layout_height="200dp"
                     android:layout_gravity="center"
                     android:layout_margin="20dp"
-                    android:onClick="insert_image"
                     android:src="@drawable/whatsapp" />
+
+                <Button
+                    android:id="@+id/selectImage"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Select_Image"
+                    android:onClick="insert_image"
+                    android:backgroundTint="#FFB300"
+                    app:cornerRadius ="10dp"
+                    android:layout_gravity="center"
+                    android:layout_margin="10dp"/>
 
                 <LinearLayout
                     android:layout_width="match_parent"
