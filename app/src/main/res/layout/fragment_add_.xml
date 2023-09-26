@@ -12,7 +12,7 @@
         android:layout_height="60dp"
         android:text="Data Add Activity"
         android:layout_gravity="center"
-        android:backgroundTint="#FFB300"
+        android:backgroundTint="#43A047"
         app:cornerRadius = "10dp"/>
 
 </FrameLayout>
